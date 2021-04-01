@@ -2,10 +2,10 @@
   "logs": [
     {
       "id": 1,
-      "message": "yalla",
+      "message": "yalla macabi",
       "attention": false,
-      "tech": "Sam Smith",
-      "date": "2021-04-01T14:45:12.963Z"
+      "tech": "Ido Golan",
+      "date": "2021-04-01T15:49:07.099Z"
     },
     {
       "id": 2,
@@ -27,6 +27,20 @@
       "attention": true,
       "tech": "Sam Smith",
       "date": "2021-04-01T14:32:14.539Z"
+    },
+    {
+      "message": "sss",
+      "attention": true,
+      "tech": "Ido Golan",
+      "date": "2021-04-01T15:47:37.273Z",
+      "id": 5
+    },
+    {
+      "id": 6,
+      "message": "sdsd",
+      "attention": false,
+      "tech": "Sara Wilson",
+      "date": "2021-04-01T15:48:55.078Z"
     }
   ],
   "techs": [
