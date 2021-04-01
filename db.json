@@ -9,10 +9,10 @@
     },
     {
       "id": 2,
-      "message": "678ggghhju",
+      "message": "gkkkg",
       "attention": false,
-      "tech": "Sara Wilson",
-      "date": "2021-03-30T14:41:37.341Z"
+      "tech": "Ido Golan",
+      "date": "2021-04-01T16:12:10.271Z"
     },
     {
       "id": 3,
@@ -55,29 +55,14 @@
       "lastName": "Smith"
     },
     {
-      "id": 3,
-      "firstName": "Sara",
-      "lastName": "Wilson"
-    },
-    {
       "firstName": "Ido",
       "lastName": "Golan",
       "id": 4
     },
     {
-      "firstName": "Daniel",
-      "lastName": "Elbaz",
-      "id": 5
-    },
-    {
       "firstName": "Naama ",
       "lastName": "Menis",
       "id": 6
-    },
-    {
-      "firstName": "Nave",
-      "lastName": "Shlomo",
-      "id": 7
     }
   ]
 }
