@@ -1,20 +1,6 @@
 {
   "logs": [
     {
-      "id": 1,
-      "message": "yalla macabi",
-      "attention": false,
-      "tech": "Ido Golan",
-      "date": "2021-04-01T15:49:07.099Z"
-    },
-    {
-      "id": 2,
-      "message": "gkkkg",
-      "attention": false,
-      "tech": "Ido Golan",
-      "date": "2021-04-01T16:12:10.271Z"
-    },
-    {
       "id": 3,
       "message": "fff",
       "attention": true,
