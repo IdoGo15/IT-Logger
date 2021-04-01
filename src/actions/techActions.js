@@ -26,14 +26,14 @@ export const addTech = (tech) => async dispatch => {
     setLoading();
 
     const res = await fetch('/techs', {
-      method: 'PUT',
+      method: 'POST',
       body: JSON.stringify(tech),
       headers: {
         'Content-Type': 'application/json'
       }
     });
 
-    const data = res.json();
+    const data = await res.json();
     dispatch({
       type: ADD_TECH,
       payload: data
