@@ -4,10 +4,10 @@ import { deleteTech } from '../../actions/techActions'
 import PropTypes from 'prop-types'
 import M from 'materialize-css/dist/js/materialize.min.js'
 
-const TechItem = ({ tech: { id, firstName, lastName }, deleteTech }) => {
+const TechItem = ({ tech: { _id, firstName, lastName }, deleteTech }) => {
 
   const onDelete = () => {
-    deleteTech(id);
+    deleteTech(_id);
     M.toast({ html: 'Technician deleted'});
   }
   

@@ -36,16 +36,16 @@ const logReducer =  (state = initialState, action) => {
       return {
         ...state,
         logs: action.payload
+      };
+    case CLEAR_CURRENT:
+      return {
+        ...state,
+        current: null
       }
     case SET_CURRENT:
       return {
         ...state,
         current: action.payload
-      }
-    case CLEAR_CURRENT:
-      return {
-        ...state,
-        current: null
       }
     case SET_LOADING:
       return {

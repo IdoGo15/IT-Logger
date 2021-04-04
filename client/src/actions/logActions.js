@@ -58,27 +58,12 @@ export const deleteLog = (id) => async dispatch => {
 export const updateLog = log => async dispatch => {
   try {
     setLoading();
-
     axios.put(`/logs/${log._id}`, log).then(
       dispatch({
         type: UPDATE_LOG,
         payload: log
       })
     );
-    // const res = await fetch(`/logs/${log.id}`, {
-    //   method: 'PUT',
-    //   body: JSON.stringify(log),
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   }
-    // });
-
-    // const data = await res.json();
-
-    // dispatch({
-    //   type: UPDATE_LOG,
-    //   payload: data
-    // });
   } catch (err) {
     dispatch({
       type: LOGS_ERROR,
@@ -87,15 +72,32 @@ export const updateLog = log => async dispatch => {
   }
 };
 
+// // Search server logs
+// export const searchLogs = (text) => async dispatch => {
+//   try {
+//     setLoading();
+//     const res = await fetch(`/logs?q=${text}`);
+//     const data = await res.json();
+//     dispatch({
+//       type: SEARCH_LOGS,
+//       payload: data
+//     })
+//   } catch (error) {
+//     dispatch({
+//       type: LOGS_ERROR,
+//       payload: error.response.statusText
+//     })
+//   }
+// };
+
 // Search server logs
 export const searchLogs = (text) => async dispatch => {
   try {
     setLoading();
-    const res = await fetch(`/logs?q=${text}`);
-    const data = await res.json();
+    const res = await axios.get(`/logs/?q=${text}`);
     dispatch({
       type: SEARCH_LOGS,
-      payload: data
+      payload: res.data
     })
   } catch (error) {
     dispatch({

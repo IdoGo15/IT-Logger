@@ -31,6 +31,11 @@ router.post('/', (req,res) => {
 // @route      DELETE /techs/:id
 // @desc       Delete a tech
 router.delete('/:id', (req,res) => {
-  res.send('Delete a tech');
+  try {
+    Tech.findByIdAndRemove({_id: req.params.id}).then(res => res.send(res));
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server Error');
+  }
 });
 module.exports = router;

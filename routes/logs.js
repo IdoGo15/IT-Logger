@@ -6,7 +6,14 @@ const Log = require('../models/Log');
 // @desc       Get all logs
 router.get('/', async (req,res) => {
   try {
+  let text = req.query.q;
+  if(text){
+    const filtered = (await Log.find({})).filter(log => log.message.includes(text));
+    res.send(filtered)
+  } else {
     await Log.find({}).then(logs => res.send(logs));
+  }
+
   } catch (error) {
     console.error(error.message);
     res.status(500).send('Server Error');
@@ -51,4 +58,5 @@ router.delete('/:id', (req,res) => {
     res.status(500).send('Server Error');
   }
 });
+
 module.exports = router;
