@@ -30,13 +30,25 @@ router.post('/', (req,res) => {
 // @route      PUT /logs/:id
 // @desc       Update a log
 router.put('/:id', (req,res) => {
-  res.send('Update a log');
+  try {
+    Log.findOneAndUpdate({_id: req.params.id}, {
+      $set: req.body
+    },{new: true}).then(() => res.sendStatus(200));
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server Error');
+  }
 });
 
 
 // @route      DELETE /logs/:id
 // @desc       Delete a log
 router.delete('/:id', (req,res) => {
-  res.send('Delete a log');
+  try {
+    Log.findByIdAndRemove({_id: req.params.id}).then((removedLog) => res.send(removedLog));
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server Error');
+  }
 });
 module.exports = router;

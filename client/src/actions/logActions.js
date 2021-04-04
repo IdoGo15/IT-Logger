@@ -1,14 +1,14 @@
 import { GET_LOGS, SET_LOADING, LOGS_ERROR, ADD_LOG, DELETE_LOG, SET_CURRENT, CLEAR_CURRENT, UPDATE_LOG, SEARCH_LOGS } from './types';
+import axios from 'axios';
 
 // Get Logs from server
 export const getLogs = () => async dispatch => {
     try {
       setLoading();
-      const res = await fetch('/logs');
-      const data = await res.json();
+      const res = await axios.get('/logs');
       dispatch({
         type: GET_LOGS,
-        payload: data
+        payload: res.data
       })
     } catch (error) {
       dispatch({
@@ -22,18 +22,12 @@ export const getLogs = () => async dispatch => {
 export const addLog = (log) => async dispatch => {
   try {
     setLoading();
-    const res = await fetch('/logs', {
-      method: 'POST',
-      body: JSON.stringify(log),
-      headers: {
-        'Content-Type': 'application/json'
-      }
+    await axios.post('/logs', log ).then(res => {
+      dispatch({
+        type: ADD_LOG,
+        payload: res.data
+      })
     });
-    const data = await res.json();
-    dispatch({
-      type: ADD_LOG,
-      payload: data
-    })
   } catch (error) {
     dispatch({
       type: LOGS_ERROR,
@@ -46,13 +40,12 @@ export const addLog = (log) => async dispatch => {
 export const deleteLog = (id) => async dispatch => {
   try {
     setLoading();
-    await fetch(`/logs/${id}`, {
-      method: 'DELETE'
-    });
-    dispatch({
-      type: DELETE_LOG,
-      payload: id
-    })
+    await axios.delete(`/logs/${id}`).then(
+      dispatch({
+        type: DELETE_LOG,
+        payload: id
+      })
+    );
   } catch (error) {
     dispatch({
       type: LOGS_ERROR,
@@ -66,20 +59,26 @@ export const updateLog = log => async dispatch => {
   try {
     setLoading();
 
-    const res = await fetch(`/logs/${log.id}`, {
-      method: 'PUT',
-      body: JSON.stringify(log),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
+    axios.put(`/logs/${log._id}`, log).then(
+      dispatch({
+        type: UPDATE_LOG,
+        payload: log
+      })
+    );
+    // const res = await fetch(`/logs/${log.id}`, {
+    //   method: 'PUT',
+    //   body: JSON.stringify(log),
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   }
+    // });
 
-    const data = await res.json();
+    // const data = await res.json();
 
-    dispatch({
-      type: UPDATE_LOG,
-      payload: data
-    });
+    // dispatch({
+    //   type: UPDATE_LOG,
+    //   payload: data
+    // });
   } catch (err) {
     dispatch({
       type: LOGS_ERROR,

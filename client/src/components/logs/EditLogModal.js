@@ -24,7 +24,7 @@ const EditLogModal = ({ current, updateLog }) => {
       M.toast({ html: 'Please Enter a message and tech'});
     } else {
       const updLog = {
-        id: current.id,
+        _id: current._id,
         message,
         attention,
         tech,

@@ -17,4 +17,4 @@ app.use('/techs', require('./routes/techs'));
 
 const PORT = process.env.PORT || 6000;
 
-app.listen(PORT, () => console.log(`Serevr started on port ${PORT}`));
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
