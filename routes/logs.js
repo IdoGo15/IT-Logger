@@ -6,11 +6,19 @@ const Log = require('../models/Log');
 // @desc       Get all logs
 router.get('/', async (req,res) => {
   try {
-  let text = req.query.q;
-  if(text){
-    const filtered = (await Log.find({})).filter(log => log.message.includes(text));
+  let text = req.query.q || '';
+  let tech = req.query.tech;
+  if(tech){
+    const filtered = (await Log.find({})).filter(
+      log => log.tech === tech);
     res.send(filtered)
-  } else {
+  }
+  if(text){
+    const filtered = (await Log.find({})).filter(
+      log =>log.message.toLowerCase().includes(text.toLowerCase()) || log.tech.toLowerCase().includes(text.toLowerCase()));
+    res.send(filtered)
+  } 
+  else {
     await Log.find({}).then(logs => res.send(logs));
   }
 

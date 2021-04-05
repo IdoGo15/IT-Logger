@@ -1,4 +1,4 @@
-import { GET_LOGS, SET_LOADING, LOGS_ERROR, ADD_LOG, DELETE_LOG, SET_CURRENT, CLEAR_CURRENT, UPDATE_LOG, SEARCH_LOGS } from './types';
+import { GET_LOGS, SET_LOADING, LOGS_ERROR, ADD_LOG, DELETE_LOG, SET_CURRENT, CLEAR_CURRENT, UPDATE_LOG, SEARCH_LOGS, FILTER_BY_TECH } from './types';
 import axios from 'axios';
 
 // Get Logs from server
@@ -72,24 +72,6 @@ export const updateLog = log => async dispatch => {
   }
 };
 
-// // Search server logs
-// export const searchLogs = (text) => async dispatch => {
-//   try {
-//     setLoading();
-//     const res = await fetch(`/logs?q=${text}`);
-//     const data = await res.json();
-//     dispatch({
-//       type: SEARCH_LOGS,
-//       payload: data
-//     })
-//   } catch (error) {
-//     dispatch({
-//       type: LOGS_ERROR,
-//       payload: error.response.statusText
-//     })
-//   }
-// };
-
 // Search server logs
 export const searchLogs = (text) => async dispatch => {
   try {
@@ -97,6 +79,25 @@ export const searchLogs = (text) => async dispatch => {
     const res = await axios.get(`/logs/?q=${text}`);
     dispatch({
       type: SEARCH_LOGS,
+      payload: res.data
+    })
+  } catch (error) {
+    dispatch({
+      type: LOGS_ERROR,
+      payload: error.response.statusText
+    })
+  }
+};
+
+// Filter server logs by technican
+export const filterByTechnican = (tech) => async dispatch => {
+  console.log(tech);
+  try {
+    
+    setLoading();
+    const res = await axios.get(`/logs/?tech=${tech}`);
+    dispatch({
+      type: FILTER_BY_TECH,
       payload: res.data
     })
   } catch (error) {

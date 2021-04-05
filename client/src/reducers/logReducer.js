@@ -1,4 +1,4 @@
-import { GET_LOGS, SET_LOADING, LOGS_ERROR, ADD_LOG, DELETE_LOG, SET_CURRENT, CLEAR_CURRENT, UPDATE_LOG, SEARCH_LOGS } from '../actions/types';
+import { GET_LOGS, SET_LOADING, LOGS_ERROR, ADD_LOG, DELETE_LOG, SET_CURRENT, CLEAR_CURRENT, UPDATE_LOG, SEARCH_LOGS, FILTER_BY_TECH } from '../actions/types';
 
 const initialState= {
   logs: null,
@@ -33,6 +33,11 @@ const logReducer =  (state = initialState, action) => {
         logs: state.logs.map(log => log._id === action.payload._id ? action.payload : log)
       }
     case SEARCH_LOGS:
+      return {
+        ...state,
+        logs: action.payload
+      };
+    case FILTER_BY_TECH:
       return {
         ...state,
         logs: action.payload
