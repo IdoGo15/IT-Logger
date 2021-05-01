@@ -1,12 +1,14 @@
 import { GET_TECHS, ADD_TECH, DELETE_TECH, SET_LOADING, TECHS_ERROR } from './types'
 import axios from 'axios';
 
+const URL = 'https://system-logs.herokuapp.com';
+
 //Get techs from server
 export const getTechs = () => async dispatch =>{
   try {
     setLoading();
 
-    await axios.get('/techs').then(res => {
+    await axios.get(`${URL}/techs`).then(res => {
       dispatch({
         type: GET_TECHS,
         payload: res.data
@@ -24,7 +26,7 @@ export const getTechs = () => async dispatch =>{
 export const addTech = (tech) => async dispatch => {
   try {
     setLoading();
-    await axios.post('/techs', tech ).then(res => {
+    await axios.post(`${URL}/techs`, tech ).then(res => {
       dispatch({
         type: ADD_TECH,
         payload: res.data
@@ -42,7 +44,7 @@ export const addTech = (tech) => async dispatch => {
 export const deleteTech = (id) => async dispatch => {
   try {
     setLoading();
-    await axios.delete(`/techs/${id}`).then(
+    await axios.delete(`${URL}/techs/${id}`).then(
       dispatch({
         type: DELETE_TECH,
         payload: id
